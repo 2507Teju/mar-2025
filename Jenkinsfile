@@ -4,7 +4,7 @@ pipeline{
         APP = 'frontend'
         DB_URL = '192.168.28.24'
         BRANCH = 'main'
-        GIT_URL = 'https://github.com/harshaprakash100/ip_app.git'
+        GIT_URL = 'https://github.com/2507Teju/mar-2025.git'
         CRED_ID = 'github_hp'
     }
     stages{
@@ -18,7 +18,6 @@ pipeline{
         stage('CHECKOUT'){
             steps{
                 git branch: "${env.BRANCH}",
-                    credentialsId: "${env.CRED_ID}",
                     url: "${env.GIT_URL}"
             }
         }
