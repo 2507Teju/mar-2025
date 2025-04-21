@@ -26,12 +26,14 @@ pipeline{
                 sh 'ls -lrt'
             }
         }
-        parallel{
-            stage('checkout A'){
-                echo "running on branch main"
-            }
-            stage('checkout B'){
-                echo "running on branch test"
+        stage('Parallel stages'){
+            parallel{
+                stage('checkout A'){
+                    echo "running on branch main"
+                }
+                stage('checkout B'){
+                    echo "running on branch test"
+                }
             }
         }
     }
