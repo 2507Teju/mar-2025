@@ -5,8 +5,12 @@ pipeline{
         DB_URL = '192.168.28.24'
         BRANCH = 'main'
         GIT_URL = 'https://github.com/2507Teju/mar-2025.git'
-        CRED_ID = 'github_hp'
     }
+
+    parameters{
+        param(name: 'Build', defaultValue: 'false', description: 'Toggle the button')
+    }
+
     stages{
         stage('Environment Variables'){
             steps{
@@ -30,12 +34,22 @@ pipeline{
             parallel{
                 stage('checkout A'){
                     steps{
-                        echo "running on branch main"
+                        when {
+                            expression{
+                                params.Build=true
+                                echo "running on branch main"
+                            }
+                        }
                     }
                 }
                 stage('checkout B'){
                     steps{
-                        echo "running on branch test"
+                        when {
+                            expression{
+                                params.Build=false
+                                echo "running on branch test"
+                            }
+                        }
                     }
                 }
             }
