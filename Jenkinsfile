@@ -11,6 +11,12 @@ pipeline{
         booleanParam(name: 'Build', defaultValue: 'false', description: 'Toggle the button')
     }
 
+    options{
+        timeout(time: 65, unit:'SECONDS')
+        buildDiscarder(logRotator(numToKeepStr: '30', daysToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+
     stages{
         stage('Environment Variables'){
             steps{
@@ -55,4 +61,6 @@ pipeline{
             }
             }
         }
+    
+
 }
