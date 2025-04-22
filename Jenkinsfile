@@ -32,27 +32,27 @@ pipeline{
         }
         stage('Parallel stages'){
             parallel{
-                stage('checkout A'){
-                    steps{
-                        when {
-                            expression{
-                                params.Build==true
-                                echo "running on branch main"
-                            }
+                stage('Stage A'){
+                    when{
+                        expression{
+                            params.Build==true
                         }
                     }
-                }
-                stage('checkout B'){
                     steps{
-                        when {
-                            expression{
-                                params.Build==false
-                                echo "running on branch test"
-                            }
+                        echo "Running stage A"
+                    }
+                }
+                stage('Stage B'){
+                    when{
+                        expression{
+                            params.Build==false
                         }
+                    }
+                    steps{
+                        echo "Running stage B"
                     }
                 }
             }
+            }
         }
-    }
 }
