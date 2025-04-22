@@ -36,7 +36,7 @@ pipeline{
                     steps{
                         when {
                             expression{
-                                params.Build=true
+                                params.Build==true
                                 echo "running on branch main"
                             }
                         }
@@ -46,7 +46,7 @@ pipeline{
                     steps{
                         when {
                             expression{
-                                params.Build=false
+                                params.Build==false
                                 echo "running on branch test"
                             }
                         }
