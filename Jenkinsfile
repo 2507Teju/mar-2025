@@ -9,6 +9,7 @@ pipeline{
 
     parameters{
         booleanParam(name: 'Build', defaultValue: 'false', description: 'Toggle the button')
+        choice(name: 'BRANCH', choices: ['main', 'Test', 'feature'], description: 'Select the branch to build')
     }
 
     options{
@@ -60,7 +61,14 @@ pipeline{
                 }
             }
             }
-        }
-    
+        
+        stage('checkout'){
+            steps{
+                git branch: params.BRANCH,
+                credentialsId: 'github_user'
+                url: $(env.GIT_URL)
 
+            }
+        }
+    }
 }
