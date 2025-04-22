@@ -8,7 +8,7 @@ pipeline{
     }
 
     parameters{
-        param(name: 'Build', defaultValue: 'false', description: 'Toggle the button')
+        booleanParam(name: 'Build', defaultValue: 'false', description: 'Toggle the button')
     }
 
     stages{
